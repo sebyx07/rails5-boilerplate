@@ -1,0 +1,32 @@
+backend:
+  build: ./backend
+  command: bash start.sh
+  volumes:
+    - ./backend:/app:rw
+  ports:
+    - "3000"
+  links:
+    - postgres
+    - redis
+    - mailcatcher
+
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
+
+postgres:
+  image: postgres:9.6.8
+  ports:
+    - '5432:5432'
+  environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=1234
+  volumes:
+    - ./.db_pg:/var/lib/postgresql/data
+
+mailcatcher:
+  image: schickling/mailcatcher
+  ports:
+    - '1080:1080'
+    - '1025'

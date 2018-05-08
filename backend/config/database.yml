@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: app_development
+  host: postgres
+  username: postgres
+  password: '1234'
+
+test:
+  <<: *default
+  database: app_test
+  host: postgres
+  username: postgres
+  password: '1234'
+production:
+  <<: *default
+  database: app_production
+  username: app
+  password: <%= ENV['ANVELOPE_EXCHANGE_DATABASE_PASSWORD'] %>
