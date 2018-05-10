@@ -1,0 +1,6 @@
+Turbolinks.visit("<%= path %>");
+<% if message %>
+setTimeout(function () {
+  toastr.success("<%= message %>");
+}, 1000);
+<% end %>

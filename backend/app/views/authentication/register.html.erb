@@ -1,0 +1,22 @@
+<div class="row">
+  <%= form_with url: authentication_register_path, class: 'col-md-4 mx-auto card bg-light' do |f| %>
+    <h3 class="mx-auto">Login</h3>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, 'Password Confirmation' %>
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Repeat Password', required: true %>
+    </div>
+
+    <%= f.submit 'Register', class: 'btn btn-primary btn-block' %>
+    <%= link_to 'Login', authentication_path, class: 'ml-auto' %>
+  <% end %>
+</div>

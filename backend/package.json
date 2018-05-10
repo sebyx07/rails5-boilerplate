@@ -3,7 +3,11 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
-    "stimulus": "^1.0.1"
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "stimulus": "^1.0.1",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

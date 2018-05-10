@@ -1,0 +1,6 @@
+var form = $('form[action="<%= request.fullpath %>"]');
+if(form.length > 0){
+  form.find('.invalid-feedback').remove();
+  form.find('input').removeClass('is-invalid is-valid');
+}
+toastr.success("<%= message %>");

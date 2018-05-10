@@ -1,0 +1,21 @@
+var formErrors = <%= model.errors.messages.to_json.html_safe %>;
+var form = $('form[action="<%= request.fullpath %>"]');
+form.find('.invalid-feedback').remove();
+form.find('input.is-invalid').removeClass('is-invalid');
+form.find('input.is-valid').removeClass('is-valid');
+
+for(var err in formErrors){
+  var messages = [];
+  formErrors[err].map(function (el) {
+    messages.push(el.charAt(0).toUpperCase() + el.slice(1));
+  });
+  var $input = form.find('input[name="'+ err +'"]');
+  $input.addClass('is-invalid');
+
+  var feedback = '<div class="invalid-feedback">' + messages.join(', ') + '</div>';
+
+  $input.after(feedback);
+}
+form.find('input:not(.is-invalid)').addClass('is-valid');
+
+toastr.error('Please Correct The Form');

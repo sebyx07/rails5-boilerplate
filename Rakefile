@@ -35,3 +35,11 @@ task :setup_env do
 
   p 'Now restart your computer, then start docker'
 end
+
+
+desc 'chown'
+task :chown do
+  %w(backend).each do |dir|
+    sh "sudo chown $USER #{dir} -R"
+  end
+end

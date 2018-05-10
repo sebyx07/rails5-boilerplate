@@ -12,7 +12,7 @@ development:
 
 test:
   <<: *default
-  database: app_test
+  database: yourproject_test<%= ENV['TEST_ENV_NUMBER'] %>
   host: postgres
   username: postgres
   password: '1234'
@@ -20,4 +20,4 @@ production:
   <<: *default
   database: app_production
   username: app
-  password: <%= ENV['ANVELOPE_EXCHANGE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>

@@ -4,11 +4,14 @@ backend:
   volumes:
     - ./backend:/app:rw
   ports:
-    - "3000"
+    - "3000:3000"
+    - "3035:3035"
   links:
     - postgres
     - redis
     - mailcatcher
+  environment:
+    - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
 redis:
   image: redis
