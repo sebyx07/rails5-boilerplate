@@ -51,3 +51,10 @@ end
 
 Capybara.default_driver = :chrome
 Capybara.ignore_hidden_elements = false
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end

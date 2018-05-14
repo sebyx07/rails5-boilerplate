@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
+require "sidekiq/web"
+
 Rails.application.routes.draw do
+  is_admin = -> (request) { User.find_by(id: request.session[:user_id])&.admin? }
+
+  namespace :admin, constraints: is_admin do
+    resources :users
+    root to: "users#index"
+  end
+
+  mount Sidekiq::Web => "/admin/sidekiq", constraints: is_admin
+  comfy_route :cms_admin, path: "/admin/blog"
+  comfy_route :cms, path: "/blog"
+
   root "static#landing"
 
   namespace :authentication do

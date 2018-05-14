@@ -1,4 +1,4 @@
-# Rails 5 Boilerplate 
+# Rails 5 Boilerplate with docker-compose
 
 ## Includes Stimulus.js, webpack and Bootstrap 4
 

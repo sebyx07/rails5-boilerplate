@@ -26,7 +26,7 @@ class AuthenticationController < ApplicationController
 
 
   class RegisterForm < FormService::Base
-    strong_params :email, :password, :password_confirmation
+    strong_params :email, :name, :password, :password_confirmation
 
     validates :password, length: { minimum: 6, maximum: 64 }
     validates :password_confirmation, length: { minimum: 6, maximum: 64 }
@@ -39,7 +39,7 @@ class AuthenticationController < ApplicationController
     end
 
     process do
-      self.user = User.create!(strong_params.slice(:email, :password))
+      self.user = User.create!(strong_params.slice(:email, :name, :password))
     end
   end
 end

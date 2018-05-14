@@ -11,6 +11,7 @@ describe "Account" do
 
       within("form[action='#{account_path}']") do
         fill_in("Email", with: email)
+        fill_in("Name", with: user.name)
         find('input[type="submit"]').click
       end
       expect(page).to have_content("Account Updated!")

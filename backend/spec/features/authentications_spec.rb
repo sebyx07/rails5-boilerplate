@@ -8,14 +8,16 @@ describe "Authentication", type: :feature do
     it "valid login" do
       password = "123456"
       user = create(:user, password: password)
+      user.activate!
       visit authentication_path
 
-      fill_in :email, with: user.email
-      fill_in :password, with: password
-      find("#remember_me").set(true)
+      within("form[action='#{authentication_path}']") do
+        fill_in :email, with: user.email
+        fill_in :password, with: password
+        find("#remember_me").set(true)
 
-      find('input[name="commit"]').click
-
+        find('input[name="commit"]').click
+      end
 
       expect(page).to have_current_path(root_path)
     end
@@ -25,9 +27,11 @@ describe "Authentication", type: :feature do
       user = create(:user, password: password)
       visit authentication_path
 
-      fill_in :email, with: user.email
-      fill_in :password, with: "1234"
-      find('input[name="commit"]').click
+      within("form[action='#{authentication_path}']") do
+        fill_in :email, with: user.email
+        fill_in :password, with: "1234"
+        find('input[name="commit"]').click
+      end
 
       expect(page).to have_current_path(authentication_path)
     end
@@ -38,12 +42,14 @@ describe "Authentication", type: :feature do
       visit authentication_register_path
       user = build(:user)
 
+      within("form[action='#{authentication_register_path}']") do
+        fill_in :email, with: user.email
+        fill_in :name, with: user.name
+        fill_in :password, with: "123456"
+        fill_in :password_confirmation, with: "123456"
 
-      fill_in :email, with: user.email
-      fill_in :password, with: "123456"
-      fill_in :password_confirmation, with: "123456"
-
-      find('input[name="commit"]').click
+        find('input[name="commit"]').click
+      end
 
       expect(page).to have_current_path(authentication_path)
     end
@@ -51,11 +57,13 @@ describe "Authentication", type: :feature do
     it "invalid" do
       visit authentication_register_path
 
-      fill_in :email, with: "111"
-      fill_in :password, with: "123456"
-      fill_in :password_confirmation, with: "123456"
+      within("form[action='#{authentication_register_path}']") do
+        fill_in :email, with: "111"
+        fill_in :password, with: "123456"
+        fill_in :password_confirmation, with: "123456"
 
-      find('input[name="commit"]').click
+        find('input[name="commit"]').click
+      end
 
       expect(page).to have_current_path(authentication_register_path)
     end

@@ -2,6 +2,7 @@
 
 module AuthenticationForFeatureRequest
   def login(user)
+    user.activate!
     visit authentication_path
     fill_in :email, with: user.email
     fill_in :password, with: "123456"

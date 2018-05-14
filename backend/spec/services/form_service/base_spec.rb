@@ -8,7 +8,7 @@ describe FormService::Base do
     Class.new(described_class) do
       validates :password, presence: true
 
-      strong_params :email, :password
+      strong_params :name, :email, :password
 
       process do
         User.create!(strong_params)
@@ -18,7 +18,7 @@ describe FormService::Base do
 
 
   it "strong_params" do
-    expect(klass.strong_params).to eq(%w(email password))
+    expect(klass.strong_params).to eq(%w(name email password))
   end
 
   describe "process" do

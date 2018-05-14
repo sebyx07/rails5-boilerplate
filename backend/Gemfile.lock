@@ -24,6 +24,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
@@ -44,16 +47,37 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    administrate (0.10.0)
+      actionpack (>= 4.2, < 6.0)
+      actionview (>= 4.2, < 6.0)
+      activerecord (>= 4.2, < 6.0)
+      autoprefixer-rails (>= 6.0)
+      datetime_picker_rails (~> 0.0.7)
+      jquery-rails (>= 4.0)
+      kaminari (>= 1.0)
+      momentjs-rails (~> 2.8)
+      sass-rails (~> 5.0)
+      selectize-rails (~> 0.6)
+    annotate (2.7.3)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
     ast (2.4.0)
+    autoprefixer-rails (8.4.1)
+      execjs
     bcrypt (3.1.11)
+    better_errors (2.4.0)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.3.0)
       msgpack (~> 1.0)
     builder (3.2.3)
-    byebug (10.0.2)
     capybara (3.0.3)
       addressable
       mini_mime (>= 0.1.3)
@@ -75,12 +99,30 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    comfortable_mexican_sofa (2.0.15)
+      active_link_to (>= 1.0.0)
+      comfy_bootstrap_form (>= 4.0.0)
+      haml-rails (>= 1.0.0)
+      jquery-rails (>= 4.3.1)
+      kramdown (>= 1.0.0)
+      mimemagic (>= 0.3.2)
+      mini_magick (>= 4.8.0)
+      rails (>= 5.2.0.rc1)
+      rails-i18n (>= 5.0.0)
+      sass-rails (>= 5.0.0)
+    comfy_bootstrap_form (4.0.3)
+      rails (>= 5.0.0)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.4)
     database_cleaner (1.7.0)
+    datetime_picker_rails (0.0.7)
+      momentjs-rails (>= 2.8.1)
+    debug_inspector (0.0.3)
     diff-lcs (1.3)
     dotenv (0.7.0)
     erubi (1.7.1)
+    erubis (2.7.0)
     execjs (2.7.0)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
@@ -112,13 +154,44 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    haml (5.0.4)
+      temple (>= 0.8.0)
+      tilt
+    haml-rails (1.0.0)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 4.0.6, < 6.0)
+      html2haml (>= 1.0.1)
+      railties (>= 4.0.1)
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-rails (4.3.3)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     jwt (1.5.6)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
+    kramdown (1.16.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -133,9 +206,12 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
     mimemagic (0.3.2)
+    mini_magick (4.8.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    momentjs-rails (2.20.1)
+      railties (>= 3.1)
     msgpack (1.2.4)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -154,6 +230,10 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    oj (3.6.0)
+    paper_trail (9.0.1)
+      activerecord (>= 4.2, < 5.3)
+      request_store (~> 1.1)
     parallel (1.12.1)
     parallel_tests (2.21.3)
       parallel
@@ -173,6 +253,8 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
+    rack-protection (2.0.1)
+      rack
     rack-proxy (0.6.4)
       rack
     rack-test (1.0.0)
@@ -195,6 +277,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-i18n (5.1.1)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -206,6 +291,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.0.1)
+    request_store (1.4.1)
+      rack (>= 1.4)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -241,6 +329,8 @@ GEM
       rubocop (~> 0.53)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
+    ruby_parser (3.11.0)
+      sexp_processor (~> 4.9)
     rubyzip (1.2.1)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
@@ -253,10 +343,19 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    selectize-rails (0.12.4.1)
     selenium-webdriver (3.12.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    sexp_processor (4.11.0)
     shellany (0.0.1)
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
+    sidekiq (5.1.3)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     sorcery (0.12.0)
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
@@ -275,6 +374,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -305,11 +405,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  administrate
+  annotate
+  better_errors
+  binding_of_caller
   bootsnap (>= 1.1.0)
-  byebug
   capybara
   chromedriver-helper
   coffee-rails (~> 4.2)
+  comfortable_mexican_sofa
   database_cleaner
   factory_bot_rails
   font-awesome-rails
@@ -317,6 +421,9 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  mini_magick
+  oj
+  paper_trail
   parallel_tests
   pg (>= 0.18, < 2.0)
   poltergeist
@@ -328,6 +435,8 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
+  sidekiq
   sorcery
   spring
   spring-commands-rspec

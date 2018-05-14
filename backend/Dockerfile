@@ -17,7 +17,9 @@ RUN apt-get update && \
   build-essential \
   libpq-dev \
   nodejs \
-  vim
+  vim \
+  libmagickwand-dev \
+  tesseract-ocr
 
 
 RUN mkdir -p /app
