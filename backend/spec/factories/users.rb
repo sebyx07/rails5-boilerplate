@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -23,7 +22,7 @@
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
-#  role                                :integer          default(0)
+#  role                                :integer          default("basic")
 #  salt                                :string
 #  unlock_token                        :string
 #  created_at                          :datetime         not null

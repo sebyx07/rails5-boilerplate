@@ -2,7 +2,7 @@
 
 class AuthenticationController < ApplicationController
   def login_post
-    if login(params[:email], params[:password])
+    if login(params[:email], params[:password], params[:remember_me])
       return redirect_to_js(root_path, "Logged In!")
     end
 
@@ -15,7 +15,7 @@ class AuthenticationController < ApplicationController
         return render_form_errors_js(form)
       end
 
-      redirect_to_js(authentication_path, "Log In With Your New Account")
+      redirect_to_js(authentication_path, "Check your email #{params[:email]} for authentication")
     end
   end
 
@@ -24,6 +24,15 @@ class AuthenticationController < ApplicationController
     redirect_to_js(root_path, "Logged Out!")
   end
 
+  def activate
+    @user = User.load_from_activation_token(params[:code])
+    if @user.present?
+      @user.activate!
+      return redirect_to_js(authentication_path, "Log In With Your New Account")
+    end
+
+    redirect_to_js(authentication_path, "Invalid Activation Code")
+  end
 
   class RegisterForm < FormService::Base
     strong_params :email, :name, :password, :password_confirmation

@@ -10,7 +10,6 @@ backend:
   links:
     - postgres
     - redis
-    - mailcatcher
   environment:
     - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     - REDIS_URL=redis://redis:6379/
@@ -29,9 +28,3 @@ postgres:
     - POSTGRES_PASSWORD=1234
   volumes:
     - ./.db_pg:/var/lib/postgresql/data
-
-mailcatcher:
-  image: schickling/mailcatcher
-  ports:
-    - '1080:1080'
-    - '1025'

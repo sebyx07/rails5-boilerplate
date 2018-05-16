@@ -8,7 +8,7 @@ require "rspec/rails"
 require "capybara/rails"
 require "capybara/rspec"
 require_relative "./support/authentication"
-require_relative "./support/parallel"
+require_relative "./support/background_jobs"
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -16,7 +16,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include FactoryBot::Syntax::Methods
   config.include AuthenticationForFeatureRequest, type: :feature
-
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -32,8 +31,7 @@ RSpec.configure do |config|
       DatabaseCleaner.clean
     end
   end
-
-
+  config.before(:each) { ActionMailer::Base.deliveries.clear }
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

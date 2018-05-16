@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -23,7 +22,7 @@
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
-#  role                                :integer          default(0)
+#  role                                :integer          default("basic")
 #  salt                                :string
 #  unlock_token                        :string
 #  created_at                          :datetime         not null
@@ -42,5 +41,11 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'validations' do
+    describe 'email' do
+      it { is_expected.to allow_value('aa@aa.com').for(:email) }
+      it { is_expected.not_to allow_value('aa@aa').for(:email) }
+    end
+  end
 end

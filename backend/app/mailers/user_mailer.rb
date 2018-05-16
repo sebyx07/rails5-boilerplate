@@ -3,14 +3,13 @@
 class UserMailer < ApplicationMailer
   def activation_needed_email(user)
     @user = user
-    @url  = "http://example.com/login"
+    @url  = authentication_activate_url(user.activation_token)
     mail(to: user.email,
          subject: "Welcome to My Awesome Site")
   end
 
   def activation_success_email(user)
     @user = user
-    @url  = "http://example.com/login"
     mail(to: user.email,
          subject: "Your account is now activated")
   end

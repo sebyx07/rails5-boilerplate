@@ -69,12 +69,14 @@ gem "oj"
 gem "mini_magick"
 gem "comfortable_mexican_sofa"
 gem "sidekiq"
+gem 'premailer-rails'
 
 group :development do
   gem "rubocop-rails"
   gem "better_errors"
   gem "binding_of_caller"
   gem "annotate"
+  gem 'letter_opener_web'
 end
 
 group :development, :test do

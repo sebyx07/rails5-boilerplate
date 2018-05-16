@@ -270,7 +270,7 @@ Rails.application.config.sorcery.configure do |config|
     # logins/logouts (supporting remembering on multiple browsers simultaneously).
     # Default: false
     #
-    # user.remember_me_token_persist_globally =
+    user.remember_me_token_persist_globally = true
 
     # -- user_activation --
     # the attribute name to hold activation state (active/pending).
@@ -308,8 +308,12 @@ Rails.application.config.sorcery.configure do |config|
     # method to send email related
     # options: `:deliver_later`, `:deliver_now`, `:deliver`
     # Default: :deliver (Rails version < 4.2) or :deliver_now (Rails version 4.2+)
-    #
-    user.email_delivery_method = :deliver_later
+
+    if Rails.env.test?
+      user.email_delivery_method = :deliver_now
+    else
+      user.email_delivery_method = :deliver_later
+    end
 
     # activation needed email method on your mailer class.
     # Default: `:activation_needed_email`
@@ -485,7 +489,8 @@ Rails.application.config.sorcery.configure do |config|
     # How long since last activity is the user defined logged out?
     # Default: `10 * 60`
     #
-    # user.activity_timeout =
+    user.activity_timeout = 3600 * 24 * 7
+    config.session_timeout_from_last_action = true
 
     # -- external --
     # Class which holds the various external provider data for this user.

@@ -27,7 +27,7 @@ class AccountController < ApplicationController
   end
 
   class UpdateEmail < FormService::Base
-    strong_params :email
+    strong_params :email, :name
 
     process do
       user.update!(strong_params)

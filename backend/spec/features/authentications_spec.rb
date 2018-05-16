@@ -38,23 +38,34 @@ describe "Authentication", type: :feature do
   end
 
   describe "register" do
-    it "valid" do
-      visit authentication_register_path
-      user = build(:user)
+    context "valid" do
+      it "registers forms and activates through email", background: true do
+        visit authentication_register_path
+        user = build(:user)
 
-      within("form[action='#{authentication_register_path}']") do
-        fill_in :email, with: user.email
-        fill_in :name, with: user.name
-        fill_in :password, with: "123456"
-        fill_in :password_confirmation, with: "123456"
+        within("form[action='#{authentication_register_path}']") do
+          fill_in :email, with: user.email
+          fill_in :name, with: user.name
+          fill_in :password, with: "123456"
+          fill_in :password_confirmation, with: "123456"
 
-        find('input[name="commit"]').click
+          find('input[name="commit"]').click
+        end
+
+        expect(page).to have_current_path(authentication_path)
+        expect(ActionMailer::Base.deliveries).not_to be_empty
+
+        user = User.find_by(email: user.email)
+        expect(user.activation_state).to eq('pending')
+
+        visit authentication_activate_path(user.activation_token)
+        expect(page).to have_current_path(authentication_path)
+
+        expect(user.reload.activation_state).to eq('active')
       end
-
-      expect(page).to have_current_path(authentication_path)
     end
 
-    it "invalid" do
+    it "invalid form register" do
       visit authentication_register_path
 
       within("form[action='#{authentication_register_path}']") do
